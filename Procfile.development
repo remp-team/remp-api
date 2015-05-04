@@ -1,0 +1,2 @@
+web: node .
+mongo: mongod --dbpath=./db
