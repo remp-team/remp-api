@@ -29,5 +29,9 @@
   "Playlist": {
     "dataSource": "db",
     "public": true
+  },
+  "RempUser": {
+    "dataSource": "db",
+    "public": true
   }
 }
