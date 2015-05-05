@@ -25,5 +25,13 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Playlist": {
+    "dataSource": "db",
+    "public": true
+  },
+  "RempUser": {
+    "dataSource": "db",
+    "public": true
   }
 }

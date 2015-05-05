@@ -1,0 +1,28 @@
+{
+  "name": "Playlist",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "published": {
+      "type": "boolean",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "rempUser": {
+      "type": "belongsTo",
+      "model": "RempUser",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}
