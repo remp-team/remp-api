@@ -1,0 +1,19 @@
+{
+  "name": "RempUser",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "playlists": {
+      "type": "hasMany",
+      "model": "Playlist",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}
