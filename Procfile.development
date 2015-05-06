@@ -1,2 +1,2 @@
-web: node .
+web: DEBUG=loopback:security:acl slc run
 mongo: mongod --dbpath=./db
