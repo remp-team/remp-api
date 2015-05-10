@@ -21,6 +21,11 @@
       "type": "belongsTo",
       "model": "RempUser",
       "foreignKey": ""
+    },
+    "playlists": {
+      "type": "hasMany",
+      "model": "Playlist",
+      "foreignKey": ""
     }
   },
   "acls": [],
