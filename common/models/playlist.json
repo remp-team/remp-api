@@ -1,5 +1,5 @@
 {
-  "name": "playlist",
+  "name": "Playlist",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

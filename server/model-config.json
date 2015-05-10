@@ -34,7 +34,7 @@
     "dataSource": "db",
     "public": true
   },
-  "playlist": {
+  "Playlist": {
     "dataSource": "db",
     "public": true
   }
