@@ -26,7 +26,7 @@
     "dataSource": "db",
     "public": false
   },
-  "Playlist": {
+  "Library": {
     "dataSource": "db",
     "public": true
   },
