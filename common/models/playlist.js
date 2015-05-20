@@ -1,3 +1,3 @@
-module.exports = function(Library) {
+module.exports = function(Playlist) {
 
 };
