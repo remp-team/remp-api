@@ -8,9 +8,9 @@
   "properties": {},
   "validations": [],
   "relations": {
-    "libraries": {
+    "playlists": {
       "type": "hasMany",
-      "model": "Library",
+      "model": "Playlist",
       "foreignKey": ""
     }
   },
