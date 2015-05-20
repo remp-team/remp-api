@@ -1,5 +1,5 @@
 {
-  "name": "Library",
+  "name": "Playlist",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -22,9 +22,9 @@
       "model": "RempUser",
       "foreignKey": ""
     },
-    "playlists": {
+    "musics": {
       "type": "hasMany",
-      "model": "Playlist",
+      "model": "Music",
       "foreignKey": ""
     }
   },
@@ -40,14 +40,14 @@
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW",
-      "property": "__create__playlists"
+      "property": "__create__musics"
     },
     {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW",
-      "property": "__get__playlists"
+      "property": "__get__musics"
     }
   ],
   "methods": []
