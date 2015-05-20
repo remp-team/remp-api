@@ -26,15 +26,15 @@
     "dataSource": "db",
     "public": false
   },
-  "Library": {
-    "dataSource": "db",
-    "public": true
-  },
   "RempUser": {
     "dataSource": "db",
     "public": true
   },
   "Playlist": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Music": {
     "dataSource": "db",
     "public": true
   }
