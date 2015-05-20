@@ -8,9 +8,9 @@
   "properties": {},
   "validations": [],
   "relations": {
-    "libraries": {
+    "playlists": {
       "type": "hasMany",
-      "model": "Library",
+      "model": "Playlist",
       "foreignKey": ""
     }
   },
@@ -20,14 +20,14 @@
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW",
-      "property": "__get__libraries"
+      "property": "__get__playlists"
     },
     {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW",
-      "property": "__create__libraries"
+      "property": "__create__playlists"
     }
   ],
   "methods": []

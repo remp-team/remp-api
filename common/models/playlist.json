@@ -10,17 +10,45 @@
       "type": "string",
       "required": true
     },
-    "type": {
-      "type": "string",
-      "required": true
-    },
-    "url": {
-      "type": "string",
+    "published": {
+      "type": "boolean",
       "required": true
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
+  "relations": {
+    "rempUser": {
+      "type": "belongsTo",
+      "model": "RempUser",
+      "foreignKey": ""
+    },
+    "musics": {
+      "type": "hasMany",
+      "model": "Music",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__create__musics"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__get__musics"
+    }
+  ],
   "methods": []
 }
