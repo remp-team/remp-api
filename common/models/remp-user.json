@@ -17,6 +17,11 @@
       "type": "hasOne",
       "model": "Inbox",
       "foreignKey": ""
+    },
+    "searches": {
+      "type": "hasMany",
+      "model": "Search",
+      "foreignKey": ""
     }
   },
   "acls": [
