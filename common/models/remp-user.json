@@ -12,6 +12,11 @@
       "type": "hasMany",
       "model": "Playlist",
       "foreignKey": ""
+    },
+    "inbox": {
+      "type": "hasOne",
+      "model": "Inbox",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -28,6 +33,20 @@
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "__create__playlists"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__get__inbox"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__create__inbox"
     }
   ],
   "methods": []
