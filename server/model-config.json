@@ -42,10 +42,6 @@
     "dataSource": "db",
     "public": true
   },
-  "search": {
-    "dataSource": "db",
-    "public": true
-  },
   "Search": {
     "dataSource": "db",
     "public": true
