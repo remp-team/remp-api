@@ -33,6 +33,13 @@
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "__create__playlists"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__get__inbox"
     }
   ],
   "methods": []
