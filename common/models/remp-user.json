@@ -12,6 +12,11 @@
       "type": "hasMany",
       "model": "Playlist",
       "foreignKey": ""
+    },
+    "inbox": {
+      "type": "hasOne",
+      "model": "Inbox",
+      "foreignKey": ""
     }
   },
   "acls": [
