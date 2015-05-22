@@ -1,0 +1,29 @@
+{
+  "name": "Search",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "keyword": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "musics": {
+      "type": "hasMany",
+      "model": "Music",
+      "foreignKey": ""
+    },
+    "rempUser": {
+      "type": "belongsTo",
+      "model": "RempUser",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}

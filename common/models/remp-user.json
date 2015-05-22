@@ -17,6 +17,11 @@
       "type": "hasOne",
       "model": "Inbox",
       "foreignKey": ""
+    },
+    "searches": {
+      "type": "hasMany",
+      "model": "Search",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -47,6 +52,20 @@
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "__create__inbox"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__create__searches"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__get__searches"
     }
   ],
   "methods": []

@@ -41,5 +41,9 @@
   "Inbox": {
     "dataSource": "db",
     "public": true
+  },
+  "Search": {
+    "dataSource": "db",
+    "public": true
   }
 }
