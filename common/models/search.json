@@ -17,6 +17,11 @@
       "type": "hasMany",
       "model": "Music",
       "foreignKey": ""
+    },
+    "rempUser": {
+      "type": "belongsTo",
+      "model": "RempUser",
+      "foreignKey": ""
     }
   },
   "acls": [],
