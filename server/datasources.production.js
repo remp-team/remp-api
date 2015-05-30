@@ -1,5 +1,5 @@
-{
-  "db": {
+module.exports = {
+  db: {
     "host": process.env.REMP_MONGO_DB_HOST,
     "port": 27017,
     "database": "remp4_production",
@@ -8,4 +8,5 @@
     "name": "db",
     "connector": "mongodb"
   }
-}
+};
+
