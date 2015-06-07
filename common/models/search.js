@@ -1,5 +1,21 @@
+var Youtube = require("youtube-api");
+var GLOBAL_CONFIG = require("../../global-config.js");
+
 module.exports = function(Search) {
   Search.afterCreate = function(next) {
-    next();
+    Youtube.authenticate({
+      type: "key",
+      key: GLOBAL_CONFIG.youtubeApiKey
+    });
+
+    Youtube.search.list({q:this.keyword, part:"snippet", maxResults:5}, function(err, data) {
+      data.items.forEach(function(item) {
+        console.log(item.id.videoId);
+        console.log(item.snippet.title);
+        console.log("-----");
+      });
+
+      next();
+    });
   };
 };
