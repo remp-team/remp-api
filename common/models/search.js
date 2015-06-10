@@ -1,5 +1,6 @@
 var Youtube = require("youtube-api");
 var GLOBAL_CONFIG = require("../../global-config.js");
+var Music = require('./music.js');
 
 module.exports = function(Search) {
   Search.afterCreate = function(next) {
