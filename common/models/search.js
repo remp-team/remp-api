@@ -10,7 +10,7 @@ module.exports = function(Search) {
 
     var pthis = this;
 
-    Youtube.search.list({q:this.keyword, part:"snippet", maxResults:5, type:"video"}, function(err, data) {
+    Youtube.search.list({q:this.keyword, part:"snippet", maxResults:30, type:"video"}, function(err, data) {
       data.items.forEach(function(item) {
         pthis.musics.create({title:item.snippet.title, type:"youtube", url:item.id.videoId}, function(err, obj){
         });
