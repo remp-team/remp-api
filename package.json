@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
-    "pretest": "NODE_ENV=\"testing\" ./node_modules/loopback-testing/node_modules/.bin/mocha -R nyan --recursive"
+    "test": "NODE_ENV=\"testing\" ./node_modules/loopback-testing/node_modules/.bin/mocha -R nyan --recursive"
   },
   "dependencies": {
     "compression": "^1.0.3",
