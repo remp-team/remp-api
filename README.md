@@ -7,6 +7,8 @@
                           /_/                     /_/
 ```
 
+[![Circle CI](https://circleci.com/gh/remp-team/remp-api/tree/master.svg?style=svg)](https://circleci.com/gh/remp-team/remp-api/tree/master)
+
 # REMP API
 
 ## Start develop environment server
