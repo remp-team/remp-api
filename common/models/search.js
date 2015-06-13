@@ -1,6 +1,5 @@
 var Youtube = require("youtube-api");
 var GLOBAL_CONFIG = require("../../global-config.js");
-var Music = require('./music.js');
 
 module.exports = function(Search) {
   Search.afterCreate = function(next) {
@@ -9,11 +8,12 @@ module.exports = function(Search) {
       key: GLOBAL_CONFIG.youtubeApiKey
     });
 
+    var pthis = this;
+
     Youtube.search.list({q:this.keyword, part:"snippet", maxResults:5, type:"video"}, function(err, data) {
       data.items.forEach(function(item) {
-        console.log(item.id.videoId);
-        console.log(item.snippet.title);
-        console.log("-----");
+        pthis.musics.create({title:item.snippet.title, type:"youtube", url:item.id.videoId}, function(err, obj){
+        });
       });
 
       next();
