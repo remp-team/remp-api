@@ -81,7 +81,7 @@ describe('/api/users', function() {
     });
 
     lt.describe.whenCalledByUser(user2, 'GET', '/api/users/1/playlists', function() {
-      it('ログインしたユーザ自身のプレイリストは取得できる', function() {
+      it.skip('ログインしたユーザ自身のプレイリストは取得できる', function() {
         assert.equal(this.res.statusCode, 200);
       });
     });
