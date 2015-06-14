@@ -1,5 +1,6 @@
 {
-  "name": "RempUser",
+  "name": "user",
+  "plural": "users",
   "base": "User",
   "idInjection": true,
   "options": {
