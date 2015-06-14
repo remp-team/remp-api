@@ -17,9 +17,9 @@
   },
   "validations": [],
   "relations": {
-    "rempUser": {
+    "user": {
       "type": "belongsTo",
-      "model": "RempUser",
+      "model": "user",
       "foreignKey": ""
     },
     "musics": {

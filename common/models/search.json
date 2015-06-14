@@ -18,9 +18,9 @@
       "model": "Music",
       "foreignKey": ""
     },
-    "rempUser": {
+    "user": {
       "type": "belongsTo",
-      "model": "RempUser",
+      "model": "user",
       "foreignKey": ""
     }
   },
