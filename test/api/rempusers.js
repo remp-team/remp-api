@@ -7,11 +7,11 @@ var app = require('../../server/server.js');
 
 describe('/api/users', function() {
   var newUser = {email: "tester1@remp.jp", password:"tester1remp"};
-  var user1 = {
-    id: 1,
-    email: "tester1@remp.jp",
-    username: "tester1",
-    password: "tester1remp"
+  var user2 = {
+    id: 2,
+    email: "tester2@remp.jp",
+    username: "tester2",
+    password: "tester2remp"
   };
 
   lt.beforeEach.withApp(app);
@@ -80,12 +80,10 @@ describe('/api/users', function() {
       });
     });
 
-    /*
-    lt.describe.whenCalledByUser(user1, 'GET', '/api/users/1/playlists', function() {
+    lt.describe.whenCalledByUser(user2, 'GET', '/api/users/1/playlists', function() {
       it('ログインしたユーザ自身のプレイリストは取得できる', function() {
         assert.equal(this.res.statusCode, 200);
       });
     });
-    */
   });
 });
