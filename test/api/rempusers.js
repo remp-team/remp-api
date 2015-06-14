@@ -7,6 +7,12 @@ var app = require('../../server/server.js');
 
 describe('/api/rempusers', function() {
   var newUser = {email: "tester1@remp.jp", password:"tester1remp"};
+  var user1 = {
+    id: 1,
+    email: "tester1@remp.jp",
+    username: "tester1",
+    password: "tester1remp"
+  };
 
   lt.beforeEach.withApp(app);
 
@@ -65,5 +71,21 @@ describe('/api/rempusers', function() {
         assert.property(this.res.body, "userId");
       });
     });
+  });
+
+  describe('ユーザによるプレイリスト操作', function() {
+    lt.describe.whenCalledRemotely('GET', '/api/rempusers/1/playlists', function() {
+      it('未ログインユーザはユーザ1のプレイリストは取得できない', function() {
+        assert.equal(this.res.statusCode, 401);
+      });
+    });
+
+    /*
+    lt.describe.whenCalledByUser(user1, 'GET', '/api/rempusers/1/playlists', function() {
+      it('ログインしたユーザ自身のプレイリストは取得できる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+    */
   });
 });
