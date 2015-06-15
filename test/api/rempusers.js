@@ -14,6 +14,11 @@ describe('/api/users', function() {
     password: "tester2remp"
   };
 
+  var createPlayList = {
+    title: "REMP PLAY LIST",
+    published: true
+  };
+
   lt.beforeEach.withApp(app);
 
   lt.describe.whenCalledRemotely('GET', '/api/users', function() {
@@ -75,14 +80,38 @@ describe('/api/users', function() {
 
   describe('ユーザによるプレイリスト操作', function() {
     lt.describe.whenCalledRemotely('GET', '/api/users/1/playlists', function() {
-      it('未ログインユーザはユーザ1のプレイリストは取得できない', function() {
+      it('未ログインユーザはユーザのプレイリストは取得できない', function() {
         assert.equal(this.res.statusCode, 401);
       });
     });
 
-    lt.describe.whenCalledByUser(user2, 'GET', '/api/users/1/playlists', function() {
-      it.skip('ログインしたユーザ自身のプレイリストは取得できる', function() {
+    lt.describe.whenCalledRemotely('POST', '/api/users/1/playlists', createPlayList, function() {
+      it('未ログインユーザはユーザのプレイリスを作成できない', function() {
+        assert.equal(this.res.statusCode, 401);
+      });
+    });
+
+    lt.describe.whenCalledByUser(user2, 'GET', '/api/users/2/playlists', function() {
+      it('ログインしたユーザ自身のプレイリストは取得できる', function() {
         assert.equal(this.res.statusCode, 200);
+      });
+    });
+
+    lt.describe.whenCalledByUser(user2, 'POST', '/api/users/2/playlists', createPlayList, function() {
+      it('ログインユーザはユーザのプレイリスを作成できる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+
+    lt.describe.whenCalledByUser(user2, 'GET', '/api/users/1/playlists', function() {
+      it('ログインしたユーザは他人のプレイリストは取得できる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+
+    lt.describe.whenCalledByUser(user2, 'POST', '/api/users/1/playlists', createPlayList, function() {
+      it('ログインユーザであっても他人のプレイリスを作成できない', function() {
+        assert.equal(this.res.statusCode, 401);
       });
     });
   });
