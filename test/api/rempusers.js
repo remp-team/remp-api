@@ -127,6 +127,12 @@ describe('/api/users', function() {
       });
     });
 
+    lt.describe.whenCalledByUser(user2, 'GET', '/api/searches/1', searchParams, function() {
+      it('楽曲の検索結果一覧を取得できる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+
     lt.describe.whenCalledByUser(user2, 'POST', '/api/users/2/searches', {keyword:""}, function() {
       it('検索キーワードが無い場合は検索が行えない', function() {
         assert.equal(this.res.statusCode, 422);
