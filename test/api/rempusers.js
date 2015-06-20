@@ -14,9 +14,20 @@ describe('/api/users', function() {
     password: "tester2remp"
   };
 
+  var user3 = {
+    id: 3,
+    email: "tester3@remp.jp",
+    username: "tester3",
+    password: "tester3remp"
+  };
+
   var createPlayList = {
     title: "REMP PLAY LIST",
     published: true
+  };
+
+  var searchParams = {
+    keyword: "YMO"
   };
 
   lt.beforeEach.withApp(app);
@@ -114,5 +125,39 @@ describe('/api/users', function() {
         assert.equal(this.res.statusCode, 401);
       });
     });
+  });
+
+  describe('ユーザによる曲の検索操作', function() {
+    lt.describe.whenCalledByUser(user2, 'POST', '/api/users/2/searches', searchParams, function() {
+      it('APIを介して楽曲の検索ができる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+
+    lt.describe.whenCalledByUser(user2, 'POST', '/api/users/2/searches', {keyword:""}, function() {
+      it('検索キーワードが無い場合は検索が行えない', function() {
+        assert.equal(this.res.statusCode, 422);
+        assert.equal(this.res.body.error.name, "ValidationError");
+      });
+    });
+
+    lt.describe.whenCalledByUser(user2, 'GET', '/api/searches/1', function() {
+      it('楽曲の検索結果一覧を取得できる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+
+    lt.describe.whenCalledByUser(user3, 'GET', '/api/searches/1', function() {
+      it('ログインしたユーザは他人の楽曲の検索結果一覧を取得できる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+
+    lt.describe.whenCalledRemotely('GET', '/api/searches/1', function() {
+      it('未ログインの状態で検索結果は取得できない', function() {
+        assert.equal(this.res.statusCode, 401);
+      });
+    });
+
   });
 });
