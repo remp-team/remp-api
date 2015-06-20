@@ -19,6 +19,10 @@ describe('/api/users', function() {
     published: true
   };
 
+  var searchParams = {
+    keyword: "YMO"
+  };
+
   lt.beforeEach.withApp(app);
 
   lt.describe.whenCalledRemotely('GET', '/api/users', function() {
@@ -112,6 +116,20 @@ describe('/api/users', function() {
     lt.describe.whenCalledByUser(user2, 'POST', '/api/users/1/playlists', createPlayList, function() {
       it('ログインユーザであっても他人のプレイリスを作成できない', function() {
         assert.equal(this.res.statusCode, 401);
+      });
+    });
+  });
+
+  describe('ユーザによる曲の検索操作', function() {
+    lt.describe.whenCalledByUser(user2, 'POST', '/api/users/2/searches', searchParams, function() {
+      it('APIを介して楽曲の検索ができる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+
+    lt.describe.whenCalledByUser(user2, 'POST', '/api/users/2/searches', {keyword:""}, function() {
+      it('検索キーワードが無い場合は検索が行えない', function() {
+        assert.equal(this.res.statusCode, 422);
       });
     });
   });
