@@ -130,6 +130,7 @@ describe('/api/users', function() {
     lt.describe.whenCalledByUser(user2, 'POST', '/api/users/2/searches', {keyword:""}, function() {
       it('検索キーワードが無い場合は検索が行えない', function() {
         assert.equal(this.res.statusCode, 422);
+        assert.equal(this.res.body.error.name, "ValidationError");
       });
     });
   });
