@@ -7,6 +7,7 @@ var app = require('../../server/server.js');
 
 describe('/api/users', function() {
   var newUser = {email: "tester1@remp.jp", password:"tester1remp"};
+
   var user2 = {
     id: 2,
     email: "tester2@remp.jp",
@@ -60,6 +61,14 @@ describe('/api/users', function() {
 
     lt.describe.whenCalledRemotely('POST', '/api/users', newUser, function() {
       it('メールアドレス, パスワードを与えるとユーザ作成できる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+  });
+
+  describe('ユーザ登録直後の状態のチェック', function() {
+    lt.describe.whenCalledByUser(user2, 'GET', '/api/users/2/inbox', function() {
+      it('ユーザ作成後は受信箱(inbox)ができている', function() {
         assert.equal(this.res.statusCode, 200);
       });
     });
