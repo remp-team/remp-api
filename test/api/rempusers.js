@@ -7,6 +7,7 @@ var app = require('../../server/server.js');
 
 describe('/api/users', function() {
   var newUser = {email: "tester1@remp.jp", password:"tester1remp"};
+  var newMusic = {title: "BTTB", type:"youtube", url:"https://www.youtube.com/watch?v=btyhpyJTyXg"};
 
   var userAlice = {
     id: 2,
@@ -165,6 +166,22 @@ describe('/api/users', function() {
     lt.describe.whenCalledRemotely('GET', '/api/searches/1', function() {
       it('未ログインの状態で検索結果は取得できない', function() {
         assert.equal(this.res.statusCode, 401);
+      });
+    });
+  });
+
+  describe('ユーザ間の楽曲の送受信', function() {
+    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/inboxes/3/musics', newMusic, function() {
+      it('AliceはBobに楽曲を送ることができる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+
+    lt.describe.whenCalledByUser(userBob, 'GET', '/api/inboxes/3/musics', function() {
+      it('Bobのinboxには1曲楽曲が入っている', function() {
+        assert.equal(this.res.statusCode, 200);
+        assert.equal(this.res.body.length, 1);
+        assert.equal(this.res.body[0].title, newMusic.title);
       });
     });
 
