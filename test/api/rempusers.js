@@ -32,6 +32,8 @@ describe('/api/users', function() {
     keyword: "YMO"
   };
 
+  var alicePlaylistId = null;
+
   lt.beforeEach.withApp(app);
 
   lt.describe.whenCalledRemotely('GET', '/api/users', function() {
@@ -121,6 +123,7 @@ describe('/api/users', function() {
     lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/playlists', createPlayList, function() {
       it('ログインユーザはユーザのプレイリスを作成できる', function() {
         assert.equal(this.res.statusCode, 200);
+        alicePlaylistId = res.body.id;
       });
     });
 
