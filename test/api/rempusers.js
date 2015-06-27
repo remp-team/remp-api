@@ -32,7 +32,11 @@ describe('/api/users', function() {
     keyword: "YMO"
   };
 
-  var alicePlaylistId = null;
+  var musicParams = {
+    title: "BTTB",
+    type: "youtube",
+    url: "https://www.youtube.com/watch?v=btyhpyJTyXg"
+  };
 
   lt.beforeEach.withApp(app);
 
@@ -123,7 +127,6 @@ describe('/api/users', function() {
     lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/playlists', createPlayList, function() {
       it('ログインユーザはユーザのプレイリスを作成できる', function() {
         assert.equal(this.res.statusCode, 200);
-        alicePlaylistId = res.body.id;
       });
     });
 
@@ -135,6 +138,20 @@ describe('/api/users', function() {
 
     lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/1/playlists', createPlayList, function() {
       it('ログインユーザであっても他人のプレイリスを作成できない', function() {
+        assert.equal(this.res.statusCode, 401);
+      });
+    });
+  });
+
+  describe('ユーザによる曲のプレイリスト操作', function() {
+    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', musicParams, function() {
+      it('プレイリストの所有者はプレイリストに楽曲を1曲登録できる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+
+    lt.describe.whenCalledByUser(userBob, 'POST', '/api/playlists/1/musics', musicParams, function() {
+      it('プレイリストの所有者以外はプレイリストに楽曲を1曲登録できない', function() {
         assert.equal(this.res.statusCode, 401);
       });
     });
