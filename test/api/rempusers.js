@@ -7,14 +7,16 @@ var app = require('../../server/server.js');
 
 describe('/api/users', function() {
   var newUser = {email: "tester1@remp.jp", password:"tester1remp"};
-  var user2 = {
+  var newMusic = {title: "BTTB", type:"youtube", url:"https://www.youtube.com/watch?v=btyhpyJTyXg"};
+
+  var userAlice = {
     id: 2,
     email: "tester2@remp.jp",
     username: "tester2",
     password: "tester2remp"
   };
 
-  var user3 = {
+  var userBob = {
     id: 3,
     email: "tester3@remp.jp",
     username: "tester3",
@@ -65,6 +67,14 @@ describe('/api/users', function() {
     });
   });
 
+  describe('ユーザ登録直後の状態のチェック', function() {
+    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/users/2/inbox', function() {
+      it('ユーザ作成後は受信箱(inbox)ができている', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+  });
+
   describe('登録ユーザによるログイン', function() {
     lt.describe.whenCalledRemotely('POST', '/api/users/login', {}, function() {
       it('パラメータが無くリクエストした場合はステータス400でエラー', function() {
@@ -102,25 +112,25 @@ describe('/api/users', function() {
       });
     });
 
-    lt.describe.whenCalledByUser(user2, 'GET', '/api/users/2/playlists', function() {
+    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/users/2/playlists', function() {
       it('ログインしたユーザ自身のプレイリストは取得できる', function() {
         assert.equal(this.res.statusCode, 200);
       });
     });
 
-    lt.describe.whenCalledByUser(user2, 'POST', '/api/users/2/playlists', createPlayList, function() {
+    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/playlists', createPlayList, function() {
       it('ログインユーザはユーザのプレイリスを作成できる', function() {
         assert.equal(this.res.statusCode, 200);
       });
     });
 
-    lt.describe.whenCalledByUser(user2, 'GET', '/api/users/1/playlists', function() {
+    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/users/1/playlists', function() {
       it('ログインしたユーザは他人のプレイリストは取得できる', function() {
         assert.equal(this.res.statusCode, 200);
       });
     });
 
-    lt.describe.whenCalledByUser(user2, 'POST', '/api/users/1/playlists', createPlayList, function() {
+    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/1/playlists', createPlayList, function() {
       it('ログインユーザであっても他人のプレイリスを作成できない', function() {
         assert.equal(this.res.statusCode, 401);
       });
@@ -128,26 +138,26 @@ describe('/api/users', function() {
   });
 
   describe('ユーザによる曲の検索操作', function() {
-    lt.describe.whenCalledByUser(user2, 'POST', '/api/users/2/searches', searchParams, function() {
+    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', searchParams, function() {
       it('APIを介して楽曲の検索ができる', function() {
         assert.equal(this.res.statusCode, 200);
       });
     });
 
-    lt.describe.whenCalledByUser(user2, 'POST', '/api/users/2/searches', {keyword:""}, function() {
+    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', {keyword:""}, function() {
       it('検索キーワードが無い場合は検索が行えない', function() {
         assert.equal(this.res.statusCode, 422);
         assert.equal(this.res.body.error.name, "ValidationError");
       });
     });
 
-    lt.describe.whenCalledByUser(user2, 'GET', '/api/searches/1', function() {
+    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/1', function() {
       it('楽曲の検索結果一覧を取得できる', function() {
         assert.equal(this.res.statusCode, 200);
       });
     });
 
-    lt.describe.whenCalledByUser(user3, 'GET', '/api/searches/1', function() {
+    lt.describe.whenCalledByUser(userBob, 'GET', '/api/searches/1', function() {
       it('ログインしたユーザは他人の楽曲の検索結果一覧を取得できる', function() {
         assert.equal(this.res.statusCode, 200);
       });
@@ -158,6 +168,29 @@ describe('/api/users', function() {
         assert.equal(this.res.statusCode, 401);
       });
     });
+  });
 
+  describe('ユーザ間の楽曲の送受信', function() {
+    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/inboxes/3/musics', newMusic, function() {
+      it('AliceはBobに楽曲を送ることができる', function() {
+        assert.equal(this.res.statusCode, 200);
+      });
+    });
+
+    lt.describe.whenCalledByUser(userBob, 'GET', '/api/inboxes/3/musics', function() {
+      it('Bobのinboxには1曲楽曲が入っている', function() {
+        assert.equal(this.res.statusCode, 200);
+        assert.equal(this.res.body.length, 1);
+        assert.equal(this.res.body[0].title, newMusic.title);
+      });
+    });
+
+    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/inboxes/3/musics', function() {
+      it('AliceもBobのinboxの内容を確認できる', function() {
+        assert.equal(this.res.statusCode, 200);
+        assert.equal(this.res.body.length, 1);
+        assert.equal(this.res.body[0].title, newMusic.title);
+      });
+    });
   });
 });
