@@ -185,5 +185,12 @@ describe('/api/users', function() {
       });
     });
 
+    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/inboxes/3/musics', function() {
+      it('AliceもBobのinboxの内容を確認できる', function() {
+        assert.equal(this.res.statusCode, 200);
+        assert.equal(this.res.body.length, 1);
+        assert.equal(this.res.body[0].title, newMusic.title);
+      });
+    });
   });
 });
