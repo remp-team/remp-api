@@ -11,8 +11,11 @@ module.exports = function(Search) {
     var pthis = this;
 
     Youtube.search.list({q:this.keyword, part:"snippet", maxResults:30, type:"video"}, function(err, data) {
+      var youtubeUrl;
+
       data.items.forEach(function(item) {
-        pthis.musics.create({title:item.snippet.title, type:"youtube", url:item.id.videoId}, function(err, obj){
+        youtubeUrl = "http://www.youtube.com/watch?v=" + item.id.videoId;
+        pthis.musics.create({title:item.snippet.title, type:"youtube", url:youtubeUrl}, function(err, obj){
         });
       });
 
