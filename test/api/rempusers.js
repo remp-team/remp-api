@@ -186,6 +186,7 @@ describe('/api/users', function() {
     lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/1', function() {
       it('楽曲の検索結果一覧を取得できる', function() {
         assert.equal(this.res.statusCode, 200);
+        assert.equal(this.res.body.musics.length, 30);
       });
     });
 
