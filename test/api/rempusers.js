@@ -144,6 +144,18 @@ describe('/api/users', function() {
   });
 
   describe('ユーザによる曲のプレイリスト操作', function() {
+    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', {title:"NG"}, function() {
+      it('楽曲のURLが無ければプレイリストに登録できない', function() {
+        assert.equal(this.res.statusCode, 422);
+      });
+    });
+
+    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', {title:"NG", type:"youtube", url:"http"}, function() {
+      it('不正なURLの楽曲はプレイリストに登録できない', function() {
+        assert.equal(this.res.statusCode, 422);
+      });
+    });
+
     lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', musicParams, function() {
       it('プレイリストの所有者はプレイリストに楽曲を1曲登録できる', function() {
         assert.equal(this.res.statusCode, 200);
