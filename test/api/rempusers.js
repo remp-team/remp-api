@@ -183,20 +183,20 @@ describe('/api/users', function() {
       });
     });
 
-    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/1', function() {
+    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/1/musics', function() {
       it('楽曲の検索結果一覧を取得できる', function() {
         assert.equal(this.res.statusCode, 200);
-        assert.equal(this.res.body.musics.length, 30);
+        assert.equal(this.res.body.length, 30);
       });
     });
 
-    lt.describe.whenCalledByUser(userBob, 'GET', '/api/searches/1', function() {
+    lt.describe.whenCalledByUser(userBob, 'GET', '/api/searches/1/musics', function() {
       it('ログインしたユーザは他人の楽曲の検索結果一覧を取得できる', function() {
         assert.equal(this.res.statusCode, 200);
       });
     });
 
-    lt.describe.whenCalledRemotely('GET', '/api/searches/1', function() {
+    lt.describe.whenCalledRemotely('GET', '/api/searches/1/musics', function() {
       it('未ログインの状態で検索結果は取得できない', function() {
         assert.equal(this.res.statusCode, 401);
       });
