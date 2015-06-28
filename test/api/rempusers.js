@@ -170,35 +170,62 @@ describe('/api/users', function() {
   });
 
   describe('ユーザによる曲の検索操作', function() {
-    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', searchParams, function() {
-      it('APIを介して楽曲の検索ができる', function() {
-        assert.equal(this.res.statusCode, 200);
+    describe('楽曲検索', function() {
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', searchParams, function() {
+        it('APIを介して楽曲の検索ができる', function() {
+          assert.equal(this.res.statusCode, 200);
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', {keyword:""}, function() {
+        it('検索キーワードが無い場合は検索が行えない', function() {
+          assert.equal(this.res.statusCode, 422);
+          assert.equal(this.res.body.error.name, "ValidationError");
+        });
       });
     });
 
-    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', {keyword:""}, function() {
-      it('検索キーワードが無い場合は検索が行えない', function() {
-        assert.equal(this.res.statusCode, 422);
-        assert.equal(this.res.body.error.name, "ValidationError");
+    describe('検索結果の概要取得', function() {
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/1', function() {
+        it('検索キーワードを再確認できる', function() {
+          assert.equal(this.res.statusCode, 200);
+          assert.equal(this.res.body.keyword, searchParams.keyword);
+        });
+      });
+
+      lt.describe.whenCalledByUser(userBob, 'GET', '/api/searches/1', function() {
+        it('ログイン中の他人も検索キーワードを再確認できる', function() {
+          assert.equal(this.res.statusCode, 200);
+          assert.equal(this.res.body.keyword, searchParams.keyword);
+        });
+      });
+
+      lt.describe.whenCalledRemotely('GET', '/api/searches/1', function() {
+        it('未ログインの状態で検索キーワードは再確認できない', function() {
+          assert.equal(this.res.statusCode, 401);
+        });
       });
     });
 
-    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/1/musics', function() {
-      it('楽曲の検索結果一覧を取得できる', function() {
-        assert.equal(this.res.statusCode, 200);
-        assert.equal(this.res.body.length, 30);
+    describe('検索結果の一覧取得', function() {
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/1/musics', function() {
+        it('楽曲の検索結果一覧を取得できる', function() {
+          assert.equal(this.res.statusCode, 200);
+          assert.equal(this.res.body.length, 30);
+        });
       });
-    });
 
-    lt.describe.whenCalledByUser(userBob, 'GET', '/api/searches/1/musics', function() {
-      it('ログインしたユーザは他人の楽曲の検索結果一覧を取得できる', function() {
-        assert.equal(this.res.statusCode, 200);
+      lt.describe.whenCalledByUser(userBob, 'GET', '/api/searches/1/musics', function() {
+        it('ログインしたユーザは他人の楽曲の検索結果一覧を取得できる', function() {
+          assert.equal(this.res.statusCode, 200);
+          assert.equal(this.res.body.length, 30);
+        });
       });
-    });
 
-    lt.describe.whenCalledRemotely('GET', '/api/searches/1/musics', function() {
-      it('未ログインの状態で検索結果は取得できない', function() {
-        assert.equal(this.res.statusCode, 401);
+      lt.describe.whenCalledRemotely('GET', '/api/searches/1/musics', function() {
+        it('未ログインの状態で検索結果は取得できない', function() {
+          assert.equal(this.res.statusCode, 401);
+        });
       });
     });
   });
