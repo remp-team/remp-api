@@ -258,6 +258,12 @@ describe('/api/users', function() {
           assert.equal(this.res.statusCode, 204);
         });
       });
+
+      lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/users/2/searches/1', function() {
+        it('検索結果の所有者は検索結果全体を削除できる', function() {
+          assert.equal(this.res.statusCode, 204);
+        });
+      });
     });
   });
 
