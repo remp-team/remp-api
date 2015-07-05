@@ -254,7 +254,7 @@ describe('/api/users', function() {
 
     describe('検索結果に対する操作', function() {
       lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/searches/1/musics/2', function() {
-        it('プレイリストの所有者はプレイリストに楽曲を1曲削除できる', function() {
+        it('検索結果の所有者は検索結果中の楽曲を1曲削除できる', function() {
           assert.equal(this.res.statusCode, 204);
         });
       });
