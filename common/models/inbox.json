@@ -40,7 +40,6 @@
       "permission": "ALLOW",
       "property": "__get__musics"
     }
-
   ],
   "methods": []
 }
