@@ -67,6 +67,20 @@
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "__get__searches"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__destroyById__playlists"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__destroyById__searches"
     }
   ],
   "methods": []
