@@ -175,6 +175,14 @@ describe('/api/users', function() {
         });
       });
     });
+
+    describe('プレイリスト削除', function() {
+      lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/playlists/1', function() {
+        it('プレイリストの所有者はプレイリストを削除できる', function() {
+          assert.equal(this.res.statusCode, 204);
+        });
+      });
+    });
   });
 
 
