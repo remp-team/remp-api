@@ -177,6 +177,12 @@ describe('/api/users', function() {
     });
 
     describe('プレイリスト削除', function() {
+      lt.describe.whenCalledByUser(userBob, 'DELETE', '/api/users/2/playlists/1', function() {
+        it('プレイリストの所有者以外はプレイリストを削除できない', function() {
+          assert.equal(this.res.statusCode, 404);
+        });
+      });
+
       lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/users/2/playlists/1', function() {
         it('プレイリストの所有者はプレイリストを削除できる', function() {
           assert.equal(this.res.statusCode, 204);
