@@ -105,75 +105,78 @@ describe('/api/users', function() {
     });
   });
 
-  describe('ユーザによるプレイリスト操作', function() {
-    lt.describe.whenCalledRemotely('GET', '/api/users/1/playlists', function() {
-      it('未ログインユーザはユーザのプレイリストは取得できない', function() {
-        assert.equal(this.res.statusCode, 401);
+  describe('プレイリスト関連のテスト', function() {
+    describe('ユーザによるプレイリスト操作', function() {
+      lt.describe.whenCalledRemotely('GET', '/api/users/1/playlists', function() {
+        it('未ログインユーザはユーザのプレイリストは取得できない', function() {
+          assert.equal(this.res.statusCode, 401);
+        });
+      });
+
+      lt.describe.whenCalledRemotely('POST', '/api/users/1/playlists', createPlayList, function() {
+        it('未ログインユーザはユーザのプレイリスを作成できない', function() {
+          assert.equal(this.res.statusCode, 401);
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/users/2/playlists', function() {
+        it('ログインしたユーザ自身のプレイリストは取得できる', function() {
+          assert.equal(this.res.statusCode, 200);
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/playlists', createPlayList, function() {
+        it('ログインユーザはユーザのプレイリスを作成できる', function() {
+          assert.equal(this.res.statusCode, 200);
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/users/1/playlists', function() {
+        it('ログインしたユーザは他人のプレイリストは取得できる', function() {
+          assert.equal(this.res.statusCode, 200);
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/1/playlists', createPlayList, function() {
+        it('ログインユーザであっても他人のプレイリスを作成できない', function() {
+          assert.equal(this.res.statusCode, 401);
+        });
       });
     });
 
-    lt.describe.whenCalledRemotely('POST', '/api/users/1/playlists', createPlayList, function() {
-      it('未ログインユーザはユーザのプレイリスを作成できない', function() {
-        assert.equal(this.res.statusCode, 401);
+    describe('プレイリストに付随する楽曲操作のテスト', function() {
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', {title:"NG"}, function() {
+        it('楽曲のURLが無ければプレイリストに登録できない', function() {
+          assert.equal(this.res.statusCode, 422);
+        });
       });
-    });
 
-    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/users/2/playlists', function() {
-      it('ログインしたユーザ自身のプレイリストは取得できる', function() {
-        assert.equal(this.res.statusCode, 200);
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', {title:"NG", type:"youtube", url:"http"}, function() {
+        it('不正なURLの楽曲はプレイリストに登録できない', function() {
+          assert.equal(this.res.statusCode, 422);
+        });
       });
-    });
 
-    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/playlists', createPlayList, function() {
-      it('ログインユーザはユーザのプレイリスを作成できる', function() {
-        assert.equal(this.res.statusCode, 200);
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', musicParams, function() {
+        it('プレイリストの所有者はプレイリストに楽曲を1曲登録できる', function() {
+          assert.equal(this.res.statusCode, 200);
+        });
       });
-    });
 
-    lt.describe.whenCalledByUser(userAlice, 'GET', '/api/users/1/playlists', function() {
-      it('ログインしたユーザは他人のプレイリストは取得できる', function() {
-        assert.equal(this.res.statusCode, 200);
+      lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/playlists/1/musics/1', function() {
+        it('プレイリストの所有者はプレイリストに楽曲を1曲削除できる', function() {
+          assert.equal(this.res.statusCode, 204);
+        });
       });
-    });
 
-    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/1/playlists', createPlayList, function() {
-      it('ログインユーザであっても他人のプレイリスを作成できない', function() {
-        assert.equal(this.res.statusCode, 401);
+      lt.describe.whenCalledByUser(userBob, 'POST', '/api/playlists/1/musics', musicParams, function() {
+        it('プレイリストの所有者以外はプレイリストに楽曲を1曲登録できない', function() {
+          assert.equal(this.res.statusCode, 401);
+        });
       });
     });
   });
 
-  describe('ユーザによる曲のプレイリスト操作', function() {
-    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', {title:"NG"}, function() {
-      it('楽曲のURLが無ければプレイリストに登録できない', function() {
-        assert.equal(this.res.statusCode, 422);
-      });
-    });
-
-    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', {title:"NG", type:"youtube", url:"http"}, function() {
-      it('不正なURLの楽曲はプレイリストに登録できない', function() {
-        assert.equal(this.res.statusCode, 422);
-      });
-    });
-
-    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', musicParams, function() {
-      it('プレイリストの所有者はプレイリストに楽曲を1曲登録できる', function() {
-        assert.equal(this.res.statusCode, 200);
-      });
-    });
-
-    lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/playlists/1/musics/1', function() {
-      it('プレイリストの所有者はプレイリストに楽曲を1曲削除できる', function() {
-        assert.equal(this.res.statusCode, 204);
-      });
-    });
-
-    lt.describe.whenCalledByUser(userBob, 'POST', '/api/playlists/1/musics', musicParams, function() {
-      it('プレイリストの所有者以外はプレイリストに楽曲を1曲登録できない', function() {
-        assert.equal(this.res.statusCode, 401);
-      });
-    });
-  });
 
   describe('ユーザによる曲の検索操作', function() {
     describe('楽曲検索', function() {
