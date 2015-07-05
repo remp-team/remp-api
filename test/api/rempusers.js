@@ -267,7 +267,7 @@ describe('/api/users', function() {
       });
     });
 
-    lt.describe.whenCalledByUser(userBob, 'DELETE', '/api/searches/1/musics/32', function() {
+    lt.describe.whenCalledByUser(userBob, 'DELETE', '/api/inboxes/3/musics/32', function() {
       it('Bobのinboxに入った楽曲は受信者であるBobが削除できる', function() {
         assert.equal(this.res.statusCode, 204);
       });
