@@ -162,9 +162,9 @@ describe('/api/users', function() {
       });
     });
 
-    lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/playlists/1/musics/1', musicParams, function() {
+    lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/playlists/1/musics/1', function() {
       it('プレイリストの所有者はプレイリストに楽曲を1曲削除できる', function() {
-        assert.equal(this.res.statusCode, 200);
+        assert.equal(this.res.statusCode, 204);
       });
     });
 
