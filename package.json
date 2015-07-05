@@ -6,23 +6,23 @@
     "test": "NODE_ENV=\"testing\" ./node_modules/loopback-testing/node_modules/.bin/mocha -R spec --recursive"
   },
   "dependencies": {
-    "compression": "^1.0.3",
-    "cors": "^2.5.2",
-    "errorhandler": "^1.1.1",
-    "loopback": "^2.14.0",
-    "loopback-boot": "^2.6.5",
-    "loopback-connector-mongodb": "^1.8.0",
-    "loopback-datasource-juggler": "^2.19.0",
-    "serve-favicon": "^2.0.1",
+    "compression": "^1.5.0",
+    "cors": "^2.7.1",
+    "errorhandler": "^1.4.0",
+    "loopback": "^2.18.0",
+    "loopback-boot": "^2.8.2",
+    "loopback-connector-mongodb": "^1.11.3",
+    "loopback-datasource-juggler": "^2.32.0",
+    "serve-favicon": "^2.3.0",
     "youtube-api": "^1.0.0"
   },
   "optionalDependencies": {
-    "loopback-explorer": "^1.1.0"
+    "loopback-explorer": "^1.8.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
-    "jshint": "^2.5.6",
-    "loopback-testing": "^1.1.0"
+    "jshint": "^2.8.0",
+    "loopback-testing": "^1.2.0"
   },
   "repository": {
     "type": "",
