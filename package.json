@@ -6,15 +6,15 @@
     "test": "NODE_ENV=\"testing\" ./node_modules/loopback-testing/node_modules/.bin/mocha -R spec --recursive"
   },
   "dependencies": {
-    "compression": "^1.5.0",
+    "compression": "^1.5.1",
     "cors": "^2.7.1",
-    "errorhandler": "^1.4.0",
-    "loopback": "^2.18.0",
+    "errorhandler": "^1.4.1",
+    "loopback": "^2.19.0",
     "loopback-boot": "^2.8.2",
     "loopback-connector-mongodb": "^1.11.3",
-    "loopback-datasource-juggler": "^2.32.0",
+    "loopback-datasource-juggler": "^2.33.1",
     "serve-favicon": "^2.3.0",
-    "youtube-api": "^1.0.0"
+    "youtube-api": "^1.0.1"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.8.0"
