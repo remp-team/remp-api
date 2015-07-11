@@ -21,6 +21,9 @@
   },
   "validations": [],
   "relations": {},
+  "mixins": {
+    "TimeStamp" : true
+  },
   "acls": [],
   "methods": []
 }

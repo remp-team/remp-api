@@ -28,6 +28,9 @@
       "foreignKey": ""
     }
   },
+  "mixins": {
+    "TimeStamp" : true
+  },
   "acls": [
     {
       "accessType": "*",
