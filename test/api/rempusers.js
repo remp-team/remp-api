@@ -213,6 +213,8 @@ describe('/api/users', function() {
         it('検索キーワードを再確認できる', function() {
           assert.equal(this.res.statusCode, 200);
           assert.equal(this.res.body.keyword, searchParams.keyword);
+          assert.property(this.res.body, "createdAt");
+          assert.property(this.res.body, "updatedAt");
         });
       });
 
@@ -235,6 +237,8 @@ describe('/api/users', function() {
         it('楽曲の検索結果一覧を取得できる', function() {
           assert.equal(this.res.statusCode, 200);
           assert.equal(this.res.body.length, 30);
+          assert.property(this.res.body[0], "createdAt");
+          assert.property(this.res.body[0], "updatedAt");
         });
       });
 
@@ -279,6 +283,8 @@ describe('/api/users', function() {
         assert.equal(this.res.statusCode, 200);
         assert.equal(this.res.body.length, 1);
         assert.equal(this.res.body[0].title, newMusic.title);
+        assert.property(this.res.body[0], "createdAt");
+        assert.property(this.res.body[0], "updatedAt");
       });
     });
 
