@@ -17,7 +17,14 @@
     "url": {
       "type": "string",
       "required": true
+    },
+    "order": {
+      "type": "number",
+      "required": true
     }
+  },
+  "scope": {
+    "order": "order asc, updatedAt DESC"
   },
   "validations": [],
   "relations": {},
