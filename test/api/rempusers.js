@@ -7,7 +7,7 @@ var app = require('../../server/server.js');
 
 describe('/api/users', function() {
   var newUser = {email: "tester1@remp.jp", password:"tester1remp"};
-  var newMusic = {title: "BTTB", type:"youtube", url:"https://www.youtube.com/watch?v=btyhpyJTyXg"};
+  var newMusic = {title: "BTTB", type:"youtube", url:"https://www.youtube.com/watch?v=btyhpyJTyXg", order:1};
 
   var userAlice = {
     id: 2,
@@ -30,12 +30,6 @@ describe('/api/users', function() {
 
   var searchParams = {
     keyword: "YMO"
-  };
-
-  var musicParams = {
-    title: "BTTB",
-    type: "youtube",
-    url: "https://www.youtube.com/watch?v=btyhpyJTyXg"
   };
 
   lt.beforeEach.withApp(app);
@@ -157,7 +151,7 @@ describe('/api/users', function() {
         });
       });
 
-      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', musicParams, function() {
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', newMusic, function() {
         it('プレイリストの所有者はプレイリストに楽曲を1曲登録できる', function() {
           assert.equal(this.res.statusCode, 200);
         });
@@ -169,7 +163,7 @@ describe('/api/users', function() {
         });
       });
 
-      lt.describe.whenCalledByUser(userBob, 'POST', '/api/playlists/1/musics', musicParams, function() {
+      lt.describe.whenCalledByUser(userBob, 'POST', '/api/playlists/1/musics', newMusic, function() {
         it('プレイリストの所有者以外はプレイリストに楽曲を1曲登録できない', function() {
           assert.equal(this.res.statusCode, 401);
         });
