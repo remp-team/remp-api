@@ -17,10 +17,20 @@
     "url": {
       "type": "string",
       "required": true
+    },
+    "order": {
+      "type": "number",
+      "required": true
     }
+  },
+  "scope": {
+    "order": "order ASC"
   },
   "validations": [],
   "relations": {},
+  "mixins": {
+    "TimeStamp" : true
+  },
   "acls": [],
   "methods": []
 }

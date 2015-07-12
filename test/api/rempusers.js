@@ -7,7 +7,11 @@ var app = require('../../server/server.js');
 
 describe('/api/users', function() {
   var newUser = {email: "tester1@remp.jp", password:"tester1remp"};
-  var newMusic = {title: "BTTB", type:"youtube", url:"https://www.youtube.com/watch?v=btyhpyJTyXg"};
+  var newMusic = {title: "Amore", type:"youtube", url:"https://www.youtube.com/watch?v=5AGZuqB1rJk", order:1};
+  var newMusics = [
+    {title: "BTTB", type:"youtube", url:"https://www.youtube.com/watch?v=btyhpyJTyXg", order:1},
+    {title: "Merry Christmas Mr Lawrence", type:"youtube", url:"https://www.youtube.com/watch?v=LGs_vGt0MY8", order:2}
+  ];
 
   var userAlice = {
     id: 2,
@@ -30,12 +34,6 @@ describe('/api/users', function() {
 
   var searchParams = {
     keyword: "YMO"
-  };
-
-  var musicParams = {
-    title: "BTTB",
-    type: "youtube",
-    url: "https://www.youtube.com/watch?v=btyhpyJTyXg"
   };
 
   lt.beforeEach.withApp(app);
@@ -145,6 +143,12 @@ describe('/api/users', function() {
     });
 
     describe('プレイリストに付随する楽曲操作のテスト', function() {
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', newMusic, function() {
+        it('プレイリストの所有者はプレイリストに楽曲を1曲登録できる', function() {
+          assert.equal(this.res.statusCode, 200);
+        });
+      });
+
       lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', {title:"NG"}, function() {
         it('楽曲のURLが無ければプレイリストに登録できない', function() {
           assert.equal(this.res.statusCode, 422);
@@ -157,8 +161,22 @@ describe('/api/users', function() {
         });
       });
 
-      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', musicParams, function() {
-        it('プレイリストの所有者はプレイリストに楽曲を1曲登録できる', function() {
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', newMusics, function() {
+        it('プレイリストの所有者はプレイリストに楽曲を複数曲登録できる', function() {
+          assert.equal(this.res.statusCode, 200);
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/playlists/1/musics', function() {
+        it.skip('プレイリストを取得した際はorderカラムの昇順で並び替えた上、orderカラムの値が一致した場合は更新日次を優先する', function() {
+          assert.equal(this.res.body[0].title, newMusics[0].title);
+          assert.equal(this.res.statusCode, 200);
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/playlists/1/musics?filter[order][0]=order ASC&filter[order][1]=updatedAt DESC', function() {
+        it('filterを指定した上でプレイリストを取得した場合もパラメータ未指定の場合と一致する', function() {
+          assert.equal(this.res.body[0].title, newMusics[0].title);
           assert.equal(this.res.statusCode, 200);
         });
       });
@@ -169,7 +187,7 @@ describe('/api/users', function() {
         });
       });
 
-      lt.describe.whenCalledByUser(userBob, 'POST', '/api/playlists/1/musics', musicParams, function() {
+      lt.describe.whenCalledByUser(userBob, 'POST', '/api/playlists/1/musics', newMusic, function() {
         it('プレイリストの所有者以外はプレイリストに楽曲を1曲登録できない', function() {
           assert.equal(this.res.statusCode, 401);
         });
@@ -213,6 +231,8 @@ describe('/api/users', function() {
         it('検索キーワードを再確認できる', function() {
           assert.equal(this.res.statusCode, 200);
           assert.equal(this.res.body.keyword, searchParams.keyword);
+          assert.property(this.res.body, "createdAt");
+          assert.property(this.res.body, "updatedAt");
         });
       });
 
@@ -235,6 +255,8 @@ describe('/api/users', function() {
         it('楽曲の検索結果一覧を取得できる', function() {
           assert.equal(this.res.statusCode, 200);
           assert.equal(this.res.body.length, 30);
+          assert.property(this.res.body[0], "createdAt");
+          assert.property(this.res.body[0], "updatedAt");
         });
       });
 
@@ -253,7 +275,7 @@ describe('/api/users', function() {
     });
 
     describe('検索結果に対する操作', function() {
-      lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/searches/1/musics/2', function() {
+      lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/searches/1/musics/4', function() {
         it('検索結果の所有者は検索結果中の楽曲を1曲削除できる', function() {
           assert.equal(this.res.statusCode, 204);
         });
@@ -279,6 +301,8 @@ describe('/api/users', function() {
         assert.equal(this.res.statusCode, 200);
         assert.equal(this.res.body.length, 1);
         assert.equal(this.res.body[0].title, newMusic.title);
+        assert.property(this.res.body[0], "createdAt");
+        assert.property(this.res.body[0], "updatedAt");
       });
     });
 
@@ -290,7 +314,7 @@ describe('/api/users', function() {
       });
     });
 
-    lt.describe.whenCalledByUser(userBob, 'DELETE', '/api/inboxes/3/musics/32', function() {
+    lt.describe.whenCalledByUser(userBob, 'DELETE', '/api/inboxes/3/musics/34', function() {
       it('Bobのinboxに入った楽曲は受信者であるBobが削除できる', function() {
         assert.equal(this.res.statusCode, 204);
       });
