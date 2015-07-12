@@ -7,7 +7,10 @@ var app = require('../../server/server.js');
 
 describe('/api/users', function() {
   var newUser = {email: "tester1@remp.jp", password:"tester1remp"};
-  var newMusic = {title: "BTTB", type:"youtube", url:"https://www.youtube.com/watch?v=btyhpyJTyXg", order:1};
+  var newMusics = [
+    {title: "BTTB", type:"youtube", url:"https://www.youtube.com/watch?v=btyhpyJTyXg", order:1},
+    {title: "Merry Christmas Mr Lawrence", type:"youtube", url:"https://www.youtube.com/watch?v=LGs_vGt0MY8", order:2}
+  ];
 
   var userAlice = {
     id: 2,
@@ -151,7 +154,7 @@ describe('/api/users', function() {
         });
       });
 
-      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', newMusic, function() {
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', newMusics[0], function() {
         it('プレイリストの所有者はプレイリストに楽曲を1曲登録できる', function() {
           assert.equal(this.res.statusCode, 200);
         });
@@ -163,7 +166,7 @@ describe('/api/users', function() {
         });
       });
 
-      lt.describe.whenCalledByUser(userBob, 'POST', '/api/playlists/1/musics', newMusic, function() {
+      lt.describe.whenCalledByUser(userBob, 'POST', '/api/playlists/1/musics', newMusics[0], function() {
         it('プレイリストの所有者以外はプレイリストに楽曲を1曲登録できない', function() {
           assert.equal(this.res.statusCode, 401);
         });
@@ -266,7 +269,7 @@ describe('/api/users', function() {
   });
 
   describe('ユーザ間の楽曲の送受信', function() {
-    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/inboxes/3/musics', newMusic, function() {
+    lt.describe.whenCalledByUser(userAlice, 'POST', '/api/inboxes/3/musics', newMusics[0], function() {
       it('AliceはBobに楽曲を送ることができる', function() {
         assert.equal(this.res.statusCode, 200);
       });
@@ -276,7 +279,7 @@ describe('/api/users', function() {
       it('Bobのinboxには1曲楽曲が入っている', function() {
         assert.equal(this.res.statusCode, 200);
         assert.equal(this.res.body.length, 1);
-        assert.equal(this.res.body[0].title, newMusic.title);
+        assert.equal(this.res.body[0].title, newMusics[0].title);
         assert.property(this.res.body[0], "createdAt");
         assert.property(this.res.body[0], "updatedAt");
       });
@@ -286,7 +289,7 @@ describe('/api/users', function() {
       it('AliceもBobのinboxの内容を確認できる', function() {
         assert.equal(this.res.statusCode, 200);
         assert.equal(this.res.body.length, 1);
-        assert.equal(this.res.body[0].title, newMusic.title);
+        assert.equal(this.res.body[0].title, newMusics[0].title);
       });
     });
 
