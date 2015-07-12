@@ -166,6 +166,12 @@ describe('/api/users', function() {
         });
       });
 
+      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', newMusics, function() {
+        it('プレイリストの所有者はプレイリストに楽曲を複数曲登録できる', function() {
+          assert.equal(this.res.statusCode, 200);
+        });
+      });
+
       lt.describe.whenCalledByUser(userBob, 'POST', '/api/playlists/1/musics', newMusics[0], function() {
         it('プレイリストの所有者以外はプレイリストに楽曲を1曲登録できない', function() {
           assert.equal(this.res.statusCode, 401);
@@ -254,7 +260,7 @@ describe('/api/users', function() {
     });
 
     describe('検索結果に対する操作', function() {
-      lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/searches/1/musics/2', function() {
+      lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/searches/1/musics/4', function() {
         it('検索結果の所有者は検索結果中の楽曲を1曲削除できる', function() {
           assert.equal(this.res.statusCode, 204);
         });
@@ -293,7 +299,7 @@ describe('/api/users', function() {
       });
     });
 
-    lt.describe.whenCalledByUser(userBob, 'DELETE', '/api/inboxes/3/musics/32', function() {
+    lt.describe.whenCalledByUser(userBob, 'DELETE', '/api/inboxes/3/musics/34', function() {
       it('Bobのinboxに入った楽曲は受信者であるBobが削除できる', function() {
         assert.equal(this.res.statusCode, 204);
       });
