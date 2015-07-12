@@ -161,15 +161,15 @@ describe('/api/users', function() {
         });
       });
 
-      lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/playlists/1/musics/1', function() {
-        it('プレイリストの所有者はプレイリストに楽曲を1曲削除できる', function() {
-          assert.equal(this.res.statusCode, 204);
-        });
-      });
-
       lt.describe.whenCalledByUser(userAlice, 'POST', '/api/playlists/1/musics', newMusics, function() {
         it('プレイリストの所有者はプレイリストに楽曲を複数曲登録できる', function() {
           assert.equal(this.res.statusCode, 200);
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'DELETE', '/api/playlists/1/musics/1', function() {
+        it('プレイリストの所有者はプレイリストに楽曲を1曲削除できる', function() {
+          assert.equal(this.res.statusCode, 204);
         });
       });
 
