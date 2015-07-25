@@ -168,7 +168,7 @@ describe('/api/users', function() {
       });
 
       lt.describe.whenCalledByUser(userAlice, 'GET', '/api/playlists/1/musics', function() {
-        it.skip('プレイリストを取得した際はorderカラムの昇順で並び替えた上、orderカラムの値が一致した場合は更新日次を優先する', function() {
+        it('プレイリストを取得した際はorderカラムの昇順で並び替えた上、orderカラムの値が一致した場合は更新日次を優先する', function() {
           assert.equal(this.res.body[0].title, newMusics[0].title);
           assert.equal(this.res.statusCode, 200);
         });
