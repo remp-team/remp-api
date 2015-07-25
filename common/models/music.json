@@ -24,7 +24,7 @@
     }
   },
   "scope": {
-    "order": "order ASC"
+    "order": ["order ASC", "updatedAt DESC"]
   },
   "validations": [],
   "relations": {},
