@@ -12,7 +12,7 @@
     "loopback": "^2.19.0",
     "loopback-boot": "^2.8.2",
     "loopback-connector-mongodb": "^1.11.3",
-    "loopback-datasource-juggler": "^2.33.1",
+    "loopback-datasource-juggler": "^2.34.0",
     "loopback-ds-timestamp-mixin": "^3.2.0",
     "serve-favicon": "^2.3.0",
     "youtube-api": "^1.0.1"
