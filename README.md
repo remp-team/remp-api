@@ -8,6 +8,7 @@
 ```
 
 [![Circle CI](https://circleci.com/gh/remp-team/remp-api/tree/master.svg?style=svg)](https://circleci.com/gh/remp-team/remp-api/tree/master)
+![](https://david-dm.org/remp-team/remp-api.svg)
 
 # REMP API
 
