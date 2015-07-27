@@ -3,7 +3,18 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
-    "test": "NODE_ENV=\"testing\" ./node_modules/loopback-testing/node_modules/.bin/mocha -R spec --recursive"
+    "test": "NODE_ENV=\"testing\" ./node_modules/loopback-testing/node_modules/.bin/mocha -R mocha-spec-cov-alt --recursive --require blanket "
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        ""
+      ],
+      "data-cover-never": [
+        "node_modules",
+        "test"
+      ]
+    }
   },
   "dependencies": {
     "compression": "^1.5.1",
@@ -21,9 +32,12 @@
     "loopback-explorer": "^1.8.0"
   },
   "devDependencies": {
+    "blanket": "^1.1.7",
     "chai": "^3.0.0",
     "jshint": "^2.8.0",
-    "loopback-testing": "1.1.0"
+    "loopback-testing": "1.1.0",
+    "mocha": "^2.2.5",
+    "mocha-spec-cov-alt": "^0.3.0"
   },
   "repository": {
     "type": "",
