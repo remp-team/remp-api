@@ -17,13 +17,13 @@
     }
   },
   "dependencies": {
-    "compression": "^1.5.1",
+    "compression": "^1.5.2",
     "cors": "^2.7.1",
-    "errorhandler": "^1.4.1",
-    "loopback": "^2.19.0",
+    "errorhandler": "^1.4.2",
+    "loopback": "^2.19.1",
     "loopback-boot": "^2.8.2",
     "loopback-connector-mongodb": "^1.11.3",
-    "loopback-datasource-juggler": "^2.34.0",
+    "loopback-datasource-juggler": "^2.35.3",
     "loopback-ds-timestamp-mixin": "^3.2.0",
     "serve-favicon": "^2.3.0",
     "youtube-api": "^1.0.1"
