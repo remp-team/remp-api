@@ -5,6 +5,9 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "TimeStamp": true
+  },
   "properties": {},
   "validations": [],
   "relations": {
@@ -18,9 +21,6 @@
       "model": "user",
       "foreignKey": ""
     }
-  },
-  "mixins": {
-    "TimeStamp" : true
   },
   "acls": [
     {

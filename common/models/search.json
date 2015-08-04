@@ -5,6 +5,9 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "TimeStamp": true
+  },
   "properties": {
     "keyword": {
       "type": "string",
@@ -23,9 +26,6 @@
       "model": "user",
       "foreignKey": ""
     }
-  },
-  "mixins": {
-    "TimeStamp" : true
   },
   "acls": [
     {

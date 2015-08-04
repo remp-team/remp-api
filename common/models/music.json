@@ -5,6 +5,15 @@
   "options": {
     "validateUpsert": true
   },
+  "scope": {
+    "order": [
+      "order ASC",
+      "updatedAt DESC"
+    ]
+  },
+  "mixins": {
+    "TimeStamp": true
+  },
   "properties": {
     "title": {
       "type": "string",
@@ -23,14 +32,8 @@
       "required": true
     }
   },
-  "scope": {
-    "order": ["order ASC", "updatedAt DESC"]
-  },
   "validations": [],
   "relations": {},
-  "mixins": {
-    "TimeStamp" : true
-  },
   "acls": [],
   "methods": []
 }
