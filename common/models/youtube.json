@@ -1,5 +1,6 @@
 {
   "name": "Youtube",
+  "plural": "Youtube",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
