@@ -5,6 +5,9 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "TimeStamp": true
+  },
   "properties": {
     "title": {
       "type": "string",
@@ -27,9 +30,6 @@
       "model": "Music",
       "foreignKey": ""
     }
-  },
-  "mixins": {
-    "TimeStamp" : true
   },
   "acls": [
     {

@@ -42,5 +42,9 @@
   "Search": {
     "dataSource": "db",
     "public": true
+  },
+  "Youtube": {
+    "dataSource": "db",
+    "public": true
   }
 }
