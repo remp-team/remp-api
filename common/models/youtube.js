@@ -9,10 +9,15 @@ module.exports = function(Youtube) {
     });
 
     YoutubeApi.search.list({q:videoId, part:"snippet", maxResults:30, type:"video"}, function(err, data) {
-      console.log(data.items[0]);
-      console.log(data.items[0].snippet.title);
+      if (err) {
+        cb(err, {});
+      }
 
-      cb(null, {videoId: videoId});
+      if (data.items.length > 0) {
+        cb(null, {videoId: videoId, title: data.items[0].snippet.title});
+      } else {
+        cb({statusCode:404, message:"Video not found."}, null);
+      }
     });
   }
 
