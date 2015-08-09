@@ -22,6 +22,7 @@
     "errorhandler": "^1.4.2",
     "loopback": "^2.20.0",
     "loopback-boot": "^2.9.0",
+    "loopback-component-passport": "^1.5.0",
     "loopback-connector-mongodb": "^1.13.0",
     "loopback-datasource-juggler": "^2.36.0",
     "loopback-ds-timestamp-mixin": "^3.2.2",
