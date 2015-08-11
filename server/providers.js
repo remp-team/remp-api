@@ -7,7 +7,7 @@ module.exports = {
     "callbackURL": "/auth/facebook/callback",
     "authPath": "/auth/facebook",
     "callbackPath": "/auth/facebook/callback",
-    "successRedirect": "/api/users/me",
+    "successRedirect": "/api/users/me/accessTokens",
     "failureRedirect": "/login",
     "scope": [],
     "failureFlash": true
