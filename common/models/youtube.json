@@ -6,8 +6,7 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {
-  },
+  "properties": {},
   "validations": [],
   "relations": {},
   "acls": [],
