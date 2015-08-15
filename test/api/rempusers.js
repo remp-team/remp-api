@@ -36,6 +36,11 @@ describe('/api/users', function() {
     keyword: "YMO"
   };
 
+  var soundCloudSearchParams = {
+    keyword: "shikakun",
+    source: "soundcloud"
+  };
+
   lt.beforeEach.withApp(app);
 
   lt.describe.whenCalledRemotely('GET', '/api/users', function() {
@@ -228,7 +233,7 @@ describe('/api/users', function() {
       });
 
       describe('Soundcloud', function() {
-        lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', {source:"soundcloud", keyword:"shikakun"}, function() {
+        lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', soundCloudSearchParams, function() {
           it('APIを介して楽曲の検索ができる', function() {
             assert.equal(this.res.statusCode, 200);
           });
