@@ -31,10 +31,6 @@ module.exports = function(Search) {
       var youtubeUrl, orderNumber=0;
 
       tracks.forEach(function(track) {
-        //console.log(track.id);
-        //console.log(track.title);
-        //console.log(track.permalink_url);
-
         pthis.musics.create({title:track.title, type:"soundcloud", url:track.permalink_url, order:orderNumber}, function(err, obj){
         });
 
