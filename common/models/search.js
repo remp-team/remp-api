@@ -41,6 +41,14 @@ module.exports = function(Search) {
     });
   };
 
+  Search.beforeSave = function(next, modelInstance) {
+    if (typeof this.source === "undefined") {
+      this.source = "youtube";
+    }
+
+    next();
+  };
+
   Search.afterCreate = function(next) {
     var pthis = this;
 
