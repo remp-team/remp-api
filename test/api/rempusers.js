@@ -33,7 +33,8 @@ describe('/api/users', function() {
   };
 
   var searchParams = {
-    keyword: "YMO"
+    keyword: "YMO",
+    source: "youtube"
   };
 
   var soundCloudSearchParams = {
