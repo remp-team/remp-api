@@ -33,7 +33,13 @@ describe('/api/users', function() {
   };
 
   var searchParams = {
-    keyword: "YMO"
+    keyword: "YMO",
+    source: "youtube"
+  };
+
+  var soundCloudSearchParams = {
+    keyword: "shikakun",
+    source: "soundcloud"
   };
 
   lt.beforeEach.withApp(app);
@@ -212,27 +218,48 @@ describe('/api/users', function() {
 
   describe('ユーザによる曲の検索操作', function() {
     describe('楽曲検索', function() {
-      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', searchParams, function() {
-        it('APIを介して楽曲の検索ができる', function() {
-          assert.equal(this.res.statusCode, 200);
+      describe('Youtube', function() {
+        lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', searchParams, function() {
+          it('APIを介して楽曲の検索ができる', function() {
+            assert.equal(this.res.statusCode, 200);
+          });
+        });
+
+        lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', {keyword:""}, function() {
+          it('検索キーワードが無い場合は検索が行えない', function() {
+            assert.equal(this.res.statusCode, 422);
+            assert.equal(this.res.body.error.name, "ValidationError");
+          });
         });
       });
 
-      lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', {keyword:""}, function() {
-        it('検索キーワードが無い場合は検索が行えない', function() {
-          assert.equal(this.res.statusCode, 422);
-          assert.equal(this.res.body.error.name, "ValidationError");
+      describe('Soundcloud', function() {
+        lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', soundCloudSearchParams, function() {
+          it('APIを介して楽曲の検索ができる', function() {
+            assert.equal(this.res.statusCode, 200);
+          });
         });
       });
     });
 
     describe('検索結果の概要取得', function() {
       lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/1', function() {
-        it('検索キーワードを再確認できる', function() {
+        it('YouTube 検索キーワードを再確認できる', function() {
           assert.equal(this.res.statusCode, 200);
           assert.equal(this.res.body.keyword, searchParams.keyword);
           assert.property(this.res.body, "createdAt");
           assert.property(this.res.body, "updatedAt");
+          assert.equal(this.res.body.source, "youtube");
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/2', function() {
+        it('Soundcloud 検索キーワードを再確認できる', function() {
+          assert.equal(this.res.statusCode, 200);
+          assert.equal(this.res.body.keyword, soundCloudSearchParams.keyword);
+          assert.property(this.res.body, "createdAt");
+          assert.property(this.res.body, "updatedAt");
+          assert.equal(this.res.body.source, "soundcloud");
         });
       });
 
@@ -252,9 +279,19 @@ describe('/api/users', function() {
 
     describe('検索結果の一覧取得', function() {
       lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/1/musics', function() {
-        it.skip('楽曲の検索結果一覧を取得できる', function() {
+        it.skip('YouTube APIで検索した楽曲の検索結果一覧を取得できる', function() {
           assert.equal(this.res.statusCode, 200);
           assert.equal(this.res.body.length, 30);
+          assert.property(this.res.body[0], "createdAt");
+          assert.property(this.res.body[0], "updatedAt");
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/2/musics', function() {
+        it.skip('Soundcloud APIで検索した楽曲の検索結果一覧を取得できる', function() {
+          assert.equal(this.res.statusCode, 200);
+          assert.equal(this.res.body[0], "title");
+          assert.equal(this.res.body[0].source, "soundcloud");
           assert.property(this.res.body[0], "createdAt");
           assert.property(this.res.body[0], "updatedAt");
         });

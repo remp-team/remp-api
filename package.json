@@ -28,6 +28,7 @@
     "loopback-connector-mongodb": "^1.13.0",
     "loopback-datasource-juggler": "^2.36.0",
     "loopback-ds-timestamp-mixin": "^3.2.2",
+    "node-soundcloud": "0.0.3",
     "passport-facebook": "^2.0.0",
     "serve-favicon": "^2.3.0",
     "youtube-api": "^1.0.1"
