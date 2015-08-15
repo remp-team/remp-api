@@ -243,11 +243,22 @@ describe('/api/users', function() {
 
     describe('検索結果の概要取得', function() {
       lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/1', function() {
-        it('検索キーワードを再確認できる', function() {
+        it('YouTube 検索キーワードを再確認できる', function() {
           assert.equal(this.res.statusCode, 200);
           assert.equal(this.res.body.keyword, searchParams.keyword);
           assert.property(this.res.body, "createdAt");
           assert.property(this.res.body, "updatedAt");
+          assert.equal(this.res.body.source, "youtube");
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/2', function() {
+        it('Soundcloud 検索キーワードを再確認できる', function() {
+          assert.equal(this.res.statusCode, 200);
+          assert.equal(this.res.body.keyword, soundCloudSearchParams.keyword);
+          assert.property(this.res.body, "createdAt");
+          assert.property(this.res.body, "updatedAt");
+          assert.equal(this.res.body.source, "soundcloud");
         });
       });
 
