@@ -31,7 +31,6 @@
     "node-soundcloud": "0.0.3",
     "passport-facebook": "^2.0.0",
     "serve-favicon": "^2.3.0",
-    "soundclouder": "^0.8.1",
     "youtube-api": "^1.0.1"
   },
   "optionalDependencies": {
