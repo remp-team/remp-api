@@ -2,13 +2,11 @@ var Youtube = require("youtube-api");
 var GLOBAL_CONFIG = require("../../global-config.js");
 
 module.exports = function(Search) {
-  Search.afterCreate = function(next) {
+  Search.youtube = function(pthis, next) {
     Youtube.authenticate({
       type: "key",
       key: GLOBAL_CONFIG.youtubeApiKey
     });
-
-    var pthis = this;
 
     Youtube.search.list({q:this.keyword, part:"snippet", maxResults:30, type:"video"}, function(err, data) {
       var youtubeUrl, orderNumber=0;
@@ -22,5 +20,10 @@ module.exports = function(Search) {
 
       next();
     });
+  };
+
+  Search.afterCreate = function(next) {
+    var pthis = this;
+    Search.youtube(pthis, next);
   };
 };
