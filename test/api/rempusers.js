@@ -42,6 +42,11 @@ describe('/api/users', function() {
     source: "soundcloud"
   };
 
+  var vimeoSearchParams = {
+    keyword: "nodejs",
+    source: "vimeo"
+  };
+
   lt.beforeEach.withApp(app);
 
   lt.describe.whenCalledRemotely('GET', '/api/users', function() {
@@ -240,6 +245,14 @@ describe('/api/users', function() {
           });
         });
       });
+
+      describe('Vimeo', function() {
+        lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', vimeoSearchParams, function() {
+          it('APIを介して楽曲の検索ができる', function() {
+            assert.equal(this.res.statusCode, 200);
+          });
+        });
+      });
     });
 
     describe('検索結果の概要取得', function() {
@@ -260,6 +273,16 @@ describe('/api/users', function() {
           assert.property(this.res.body, "createdAt");
           assert.property(this.res.body, "updatedAt");
           assert.equal(this.res.body.source, "soundcloud");
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/3', function() {
+        it('Vimeo 検索キーワードを再確認できる', function() {
+          assert.equal(this.res.statusCode, 200);
+          assert.equal(this.res.body.keyword, vimeoSearchParams.keyword);
+          assert.property(this.res.body, "createdAt");
+          assert.property(this.res.body, "updatedAt");
+          assert.equal(this.res.body.source, "vimeo");
         });
       });
 
@@ -292,6 +315,15 @@ describe('/api/users', function() {
           assert.equal(this.res.statusCode, 200);
           assert.equal(this.res.body[0], "title");
           assert.equal(this.res.body[0].source, "soundcloud");
+          assert.property(this.res.body[0], "createdAt");
+          assert.property(this.res.body[0], "updatedAt");
+        });
+      });
+
+      lt.describe.whenCalledByUser(userAlice, 'GET', '/api/searches/3/musics', function() {
+        it.skip('Vimeo APIで検索した楽曲の検索結果一覧を取得できる', function() {
+          assert.equal(this.res.statusCode, 200);
+          assert.equal(this.res.body.length, 30);
           assert.property(this.res.body[0], "createdAt");
           assert.property(this.res.body[0], "updatedAt");
         });

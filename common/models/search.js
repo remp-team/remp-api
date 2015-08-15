@@ -1,5 +1,6 @@
 var Youtube = require("youtube-api");
 var Soundcloud = require('node-soundcloud');
+var Vimeo = require('vimeo').Vimeo;
 
 var GLOBAL_CONFIG = require("../../global-config.js");
 
@@ -41,6 +42,27 @@ module.exports = function(Search) {
     });
   };
 
+  Search.vimeo = function(keyword, pthis, next) {
+    var vimeo = new Vimeo();
+    vimeo.access_token = GLOBAL_CONFIG.vimeo.accessToken;
+
+    vimeo.request({
+      path : '/videos',
+      query : {page : 1, per_page : 30, query :keyword, sort : 'relevant', direction : 'asc'}
+    }, function (error, body, status_code, headers) {
+      var orderNumber = 0;
+
+      body.data.forEach(function(video) {
+        pthis.musics.create({title:video.name, type:"vimeo", url:video.link, order:orderNumber}, function(err, obj){
+        });
+
+        orderNumber++;
+      });
+
+      next();
+    });
+  };
+
   Search.beforeSave = function(next, modelInstance) {
     if (typeof this.source === "undefined") {
       this.source = "youtube";
@@ -55,6 +77,10 @@ module.exports = function(Search) {
     switch(this.source) {
       case "soundcloud":
         Search.soundcloud(this.keyword, pthis, next);
+        break;
+
+      case "vimeo":
+        Search.vimeo(this.keyword, pthis, next);
         break;
 
       case "youtube":
