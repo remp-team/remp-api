@@ -9,6 +9,9 @@ var conf = {
   },
   vimeo: {
     accessToken: (process.env.VIMEO_API_TOKEN) ? process.env.VIMEO_API_TOKEN : "(Vimeo API Token)"
+  },
+  slack: {
+    token: (process.env.REMP_SLACK_TOKEN) ? process.env.REMP_SLACK_TOKEN : "(Slack incoming hook token)"
   }
 };
 
