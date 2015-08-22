@@ -247,6 +247,8 @@ describe('/api/users', function() {
       });
 
       describe('Vimeo', function() {
+        this.timeout(30000);
+
         lt.describe.whenCalledByUser(userAlice, 'POST', '/api/users/2/searches', vimeoSearchParams, function() {
           it('APIを介して楽曲の検索ができる', function() {
             assert.equal(this.res.statusCode, 200);
