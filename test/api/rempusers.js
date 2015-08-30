@@ -307,6 +307,7 @@ describe('/api/users', function() {
         it.skip('YouTube APIで検索した楽曲の検索結果一覧を取得できる', function() {
           assert.equal(this.res.statusCode, 200);
           assert.equal(this.res.body.length, 30);
+          assert.equal(this.res.body[0].source, "youtube");
           assert.property(this.res.body[0], "createdAt");
           assert.property(this.res.body[0], "updatedAt");
         });
@@ -326,6 +327,7 @@ describe('/api/users', function() {
         it.skip('Vimeo APIで検索した楽曲の検索結果一覧を取得できる', function() {
           assert.equal(this.res.statusCode, 200);
           assert.equal(this.res.body.length, 30);
+          assert.equal(this.res.body[0].source, "vimeo");
           assert.property(this.res.body[0], "createdAt");
           assert.property(this.res.body[0], "updatedAt");
         });
