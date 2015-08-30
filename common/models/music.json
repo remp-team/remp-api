@@ -27,6 +27,10 @@
       "type": "string",
       "required": true
     },
+    "uniqueness": {
+      "type": "string",
+      "required": true
+    },
     "order": {
       "type": "number",
       "required": true
