@@ -16,7 +16,7 @@ module.exports = function(Search) {
 
       data.items.forEach(function(item) {
         youtubeUrl = "http://www.youtube.com/watch?v=" + item.id.videoId;
-        pthis.musics.create({title:item.snippet.title, type:"youtube", url:youtubeUrl, order:orderNumber}, function(err, obj){
+        pthis.musics.create({title:item.snippet.title, type:"youtube", url:youtubeUrl, order:orderNumber, uniqueness:item.id.videoId}, function(err, obj){
         });
         orderNumber++;
       });
@@ -32,7 +32,7 @@ module.exports = function(Search) {
       var youtubeUrl, orderNumber=0;
 
       tracks.forEach(function(track) {
-        pthis.musics.create({title:track.title, type:"soundcloud", url:track.permalink_url, order:orderNumber}, function(err, obj){
+        pthis.musics.create({title:track.title, type:"soundcloud", url:track.permalink_url, order:orderNumber, uniqueness: track.id}, function(err, obj){
         });
 
         orderNumber++;
@@ -53,7 +53,7 @@ module.exports = function(Search) {
       var orderNumber = 0;
 
       body.data.forEach(function(video) {
-        pthis.musics.create({title:video.name, type:"vimeo", url:video.link, order:orderNumber}, function(err, obj){
+        pthis.musics.create({title:video.name, type:"vimeo", url:video.link, order:orderNumber, uniqueness:video.uri}, function(err, obj){
         });
 
         orderNumber++;
