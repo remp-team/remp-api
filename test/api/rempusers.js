@@ -310,6 +310,7 @@ describe('/api/users', function() {
           assert.equal(this.res.body[0].source, "youtube");
           assert.property(this.res.body[0], "createdAt");
           assert.property(this.res.body[0], "updatedAt");
+          assert.property(this.res.body[0], "uniqueness");
         });
       });
 
@@ -320,6 +321,7 @@ describe('/api/users', function() {
           assert.equal(this.res.body[0].source, "soundcloud");
           assert.property(this.res.body[0], "createdAt");
           assert.property(this.res.body[0], "updatedAt");
+          assert.property(this.res.body[0], "uniqueness");
         });
       });
 
@@ -330,6 +332,7 @@ describe('/api/users', function() {
           assert.equal(this.res.body[0].source, "vimeo");
           assert.property(this.res.body[0], "createdAt");
           assert.property(this.res.body[0], "updatedAt");
+          assert.property(this.res.body[0], "uniqueness");
         });
       });
 
