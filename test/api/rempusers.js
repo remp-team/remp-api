@@ -7,10 +7,10 @@ var app = require('../../server/server.js');
 
 describe('/api/users', function() {
   var newUser = {email: "tester1@remp.jp", password:"tester1remp"};
-  var newMusic = {title: "Amore", type:"youtube", url:"https://www.youtube.com/watch?v=5AGZuqB1rJk", order:1};
+  var newMusic = {title: "Amore", type:"youtube", url:"https://www.youtube.com/watch?v=5AGZuqB1rJk", order:1, uniqueness: "5AGZuqB1rJk"};
   var newMusics = [
-    {title: "BTTB", type:"youtube", url:"https://www.youtube.com/watch?v=btyhpyJTyXg", order:1},
-    {title: "Merry Christmas Mr Lawrence", type:"youtube", url:"https://www.youtube.com/watch?v=LGs_vGt0MY8", order:2}
+    {title: "BTTB", type:"youtube", url:"https://www.youtube.com/watch?v=btyhpyJTyXg", order:1, uniqueness: "btyhpyJTyXg"},
+    {title: "Merry Christmas Mr Lawrence", type:"youtube", url:"https://www.youtube.com/watch?v=LGs_vGt0MY8", order:2, uniqueness: "LGs_vGt0MY8"}
   ];
 
   var userAlice = {
