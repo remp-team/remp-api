@@ -12,7 +12,9 @@ var options = {
   level: 'warn'
 }
 
-winston.add(slackWinston, options)
+if (process.env.NODE_ENV == "production") {
+  winston.add(slackWinston, options)
+}
 
 module.exports = winston;
 
