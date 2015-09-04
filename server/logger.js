@@ -9,7 +9,7 @@ var options = {
   channel: '#remp',
   username: 'REMP API winston',
   message: '[{{level}}] {{message}}',
-  level: 'warn'
+  level: 'error'
 }
 
 if (process.env.NODE_ENV == "production") {
