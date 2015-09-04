@@ -19,7 +19,7 @@ module.exports = function(Youtube) {
       if (data.items.length > 0) {
         cb(null, {videoId: videoId, title: data.items[0].snippet.title});
       } else {
-        logger.error("/api/YouTube/property : Invalid YouTube video Id passed.", {videoId: videoId});
+        logger.warn("/api/YouTube/property : Invalid YouTube video Id passed.", {videoId: videoId});
         cb({statusCode:404, message:"Video not found."}, null);
       }
     });
