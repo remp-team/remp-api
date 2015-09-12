@@ -1,3 +1,9 @@
 machine:
   node:
-    version: 4.0.0
+    version: 0.10.28
+test:
+  override:
+    - nvm alias default 0.10.28
+    - npm test
+    - nvm alias default 4.0.0
+    - npm test
