@@ -24,6 +24,7 @@
     "express-session": "^1.11.3",
     "loopback": "^2.22.1",
     "loopback-boot": "^2.12.2",
+    "loopback-component-explorer": "^2.1.0",
     "loopback-component-passport": "^1.5.0",
     "loopback-connector-mongodb": "^1.13.0",
     "loopback-datasource-juggler": "^2.40.1",
@@ -35,9 +36,6 @@
     "vimeo": "^1.1.4",
     "winston": "^1.0.1",
     "youtube-api": "^1.1.0"
-  },
-  "optionalDependencies": {
-    "loopback-explorer": "^1.8.0"
   },
   "devDependencies": {
     "blanket": "^1.1.7",
