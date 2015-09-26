@@ -22,7 +22,7 @@
     "cors": "^2.7.1",
     "errorhandler": "^1.4.2",
     "express-session": "^1.11.3",
-    "loopback": "^2.22.1",
+    "loopback": "^2.22.2",
     "loopback-boot": "^2.12.2",
     "loopback-component-explorer": "^2.1.0",
     "loopback-component-passport": "^1.5.0",
@@ -34,8 +34,8 @@
     "serve-favicon": "^2.3.0",
     "slack-winston": "0.0.3",
     "vimeo": "^1.1.4",
-    "winston": "^1.0.1",
-    "youtube-api": "^1.1.0"
+    "winston": "^1.0.2",
+    "youtube-api": "^1.2.0"
   },
   "devDependencies": {
     "blanket": "^1.1.7",
