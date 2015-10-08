@@ -35,7 +35,7 @@
     "slack-winston": "0.0.3",
     "vimeo": "1.1.4",
     "winston": "1.0.2",
-    "youtube-api": "1.2.0"
+    "youtube-api": "1.2.1"
   },
   "devDependencies": {
     "blanket": "1.1.7",
