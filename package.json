@@ -23,7 +23,7 @@
     "errorhandler": "1.4.2",
     "express-session": "1.11.3",
     "loopback": "2.22.2",
-    "loopback-boot": "2.13.0",
+    "loopback-boot": "2.14.0",
     "loopback-component-explorer": "2.1.1",
     "loopback-component-passport": "1.5.0",
     "loopback-connector-mongodb": "1.13.0",
@@ -35,7 +35,7 @@
     "slack-winston": "0.0.3",
     "vimeo": "1.1.4",
     "winston": "1.1.0",
-    "youtube-api": "1.2.0"
+    "youtube-api": "1.2.1"
   },
   "devDependencies": {
     "blanket": "1.1.7",
