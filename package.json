@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "blanket": "1.1.7",
-    "chai": "3.3.0",
+    "chai": "3.4.0",
     "jshint": "2.8.0",
     "loopback-testing": "1.1.0",
     "mocha": "2.2.5",
