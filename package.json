@@ -34,11 +34,11 @@
     "serve-favicon": "2.3.0",
     "slack-winston": "0.0.3",
     "vimeo": "1.1.4",
-    "winston": "1.1.0",
+    "winston": "1.1.1",
     "youtube-api": "1.2.1"
   },
   "devDependencies": {
-    "blanket": "1.1.7",
+    "blanket": "1.1.9",
     "chai": "3.4.0",
     "jshint": "2.8.0",
     "loopback-testing": "1.1.0",
