@@ -27,7 +27,7 @@
     "loopback-component-explorer": "2.1.1",
     "loopback-component-passport": "1.5.0",
     "loopback-connector-mongodb": "1.13.0",
-    "loopback-datasource-juggler": "2.40.1",
+    "loopback-datasource-juggler": "2.41.1",
     "loopback-ds-timestamp-mixin": "3.2.2",
     "node-soundcloud": "0.0.3",
     "passport-facebook": "2.0.0",
