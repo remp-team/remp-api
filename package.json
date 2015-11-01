@@ -29,7 +29,7 @@
     "loopback-connector-mongodb": "1.13.0",
     "loopback-datasource-juggler": "2.40.1",
     "loopback-ds-timestamp-mixin": "3.2.2",
-    "node-soundcloud": "0.0.3",
+    "node-soundcloud": "0.0.4",
     "passport-facebook": "2.0.0",
     "serve-favicon": "2.3.0",
     "slack-winston": "0.0.3",
