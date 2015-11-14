@@ -38,7 +38,7 @@
     "youtube-api": "1.2.1"
   },
   "devDependencies": {
-    "blanket": "1.1.9",
+    "blanket": "1.1.10",
     "chai": "3.4.1",
     "jshint": "2.8.0",
     "loopback-testing": "1.1.0",
