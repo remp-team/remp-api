@@ -26,7 +26,7 @@
     "loopback-boot": "2.14.0",
     "loopback-component-explorer": "2.1.1",
     "loopback-component-passport": "1.6.0",
-    "loopback-connector-mongodb": "1.13.0",
+    "loopback-connector-mongodb": "1.13.1",
     "loopback-datasource-juggler": "2.41.2",
     "loopback-ds-timestamp-mixin": "3.2.2",
     "node-soundcloud": "0.0.4",
