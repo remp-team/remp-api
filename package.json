@@ -43,7 +43,7 @@
     "jshint": "2.8.0",
     "loopback-testing": "1.1.0",
     "mocha": "2.4.5",
-    "mocha-spec-cov-alt": "1.1.0"
+    "mocha-spec-cov-alt": "1.1.1"
   },
   "repository": {
     "type": "",
