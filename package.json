@@ -32,7 +32,7 @@
     "node-soundcloud": "0.0.4",
     "passport-facebook": "2.0.0",
     "serve-favicon": "2.3.0",
-    "slack-winston": "0.0.3",
+    "slack-winston": "0.0.4",
     "vimeo": "1.1.4",
     "winston": "2.1.1",
     "youtube-api": "1.4.0"
