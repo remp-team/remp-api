@@ -24,26 +24,26 @@
     "express-session": "1.12.1",
     "loopback": "2.26.2",
     "loopback-boot": "2.16.0",
-    "loopback-component-explorer": "2.1.1",
+    "loopback-component-explorer": "2.3.0",
     "loopback-component-passport": "1.6.0",
     "loopback-connector-mongodb": "1.13.3",
-    "loopback-datasource-juggler": "2.44.0",
+    "loopback-datasource-juggler": "2.45.0",
     "loopback-ds-timestamp-mixin": "3.2.2",
-    "node-soundcloud": "0.0.4",
+    "node-soundcloud": "0.0.5",
     "passport-facebook": "2.1.0",
     "serve-favicon": "2.3.0",
-    "slack-winston": "0.0.3",
+    "slack-winston": "0.0.4",
     "vimeo": "1.1.4",
     "winston": "2.1.1",
     "youtube-api": "1.4.0"
   },
   "devDependencies": {
     "blanket": "1.1.10",
-    "chai": "3.4.1",
+    "chai": "3.5.0",
     "jshint": "2.8.0",
     "loopback-testing": "1.1.0",
     "mocha": "2.4.5",
-    "mocha-spec-cov-alt": "1.1.0"
+    "mocha-spec-cov-alt": "1.1.1"
   },
   "repository": {
     "type": "",
