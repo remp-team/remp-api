@@ -30,7 +30,7 @@
     "loopback-datasource-juggler": "2.45.0",
     "loopback-ds-timestamp-mixin": "3.2.2",
     "node-soundcloud": "0.0.5",
-    "passport-facebook": "2.0.0",
+    "passport-facebook": "2.1.0",
     "serve-favicon": "2.3.0",
     "slack-winston": "0.0.4",
     "vimeo": "1.1.4",
