@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
+    "start": "nf start -j Procfile.development",
     "test": "NODE_ENV=\"testing\" mocha -R mocha-spec-cov-alt --recursive --require blanket "
   },
   "config": {
