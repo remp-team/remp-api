@@ -26,7 +26,7 @@
     "loopback": "2.29.0",
     "loopback-boot": "2.18.1",
     "loopback-component-passport": "2.1.0",
-    "loopback-component-explorer": "2.4.0",
+    "loopback-component-explorer": "2.5.0",
     "loopback-connector-mongodb": "1.15.2",
     "loopback-datasource-juggler": "2.46.1",
     "loopback-ds-timestamp-mixin": "3.3.0",
