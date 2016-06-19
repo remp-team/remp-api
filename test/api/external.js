@@ -14,7 +14,7 @@ describe('/api/youtube', function() {
 
       assert.equal(this.res.statusCode, 200);
       assert.equal(property.videoId, "eZHEnPCEe0o");
-      assert.equal(property.title,   "Do Cool Things That Matter");
+      assert.equal(property.title,   "Do Cool Things That Matter - Work at Google");
     });
   });
 
