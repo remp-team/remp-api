@@ -43,7 +43,7 @@
     "chai": "3.5.0",
     "jshint": "2.9.2",
     "loopback-testing": "1.1.0",
-    "mocha": "2.5.3",
+    "mocha": "3.0.2",
     "mocha-spec-cov-alt": "1.1.1"
   },
   "repository": {
