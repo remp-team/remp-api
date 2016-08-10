@@ -24,7 +24,7 @@
     "errorhandler": "1.4.3",
     "express-session": "1.14.0",
     "loopback": "2.29.0",
-    "loopback-boot": "2.20.0",
+    "loopback-boot": "2.21.0",
     "loopback-component-passport": "2.1.0",
     "loopback-component-explorer": "2.5.0",
     "loopback-connector-mongodb": "1.15.2",
