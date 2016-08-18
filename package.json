@@ -41,7 +41,7 @@
   "devDependencies": {
     "blanket": "1.2.3",
     "chai": "3.5.0",
-    "jshint": "2.9.2",
+    "jshint": "2.9.3",
     "loopback-testing": "1.1.0",
     "mocha": "2.5.3",
     "mocha-spec-cov-alt": "1.1.1"
