@@ -35,7 +35,7 @@
     "serve-favicon": "2.3.0",
     "slack-winston": "0.0.4",
     "vimeo": "1.2.0",
-    "winston": "2.2.0",
+    "winston": "2.3.0",
     "youtube-api": "2.0.2"
   },
   "devDependencies": {
