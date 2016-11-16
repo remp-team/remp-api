@@ -21,7 +21,7 @@
     "compression": "1.6.2",
     "cookie-parser": "1.4.3",
     "cors": "2.7.1",
-    "errorhandler": "1.4.3",
+    "errorhandler": "1.5.0",
     "express-session": "1.14.0",
     "loopback": "2.29.0",
     "loopback-boot": "2.21.0",
