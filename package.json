@@ -22,7 +22,7 @@
     "cookie-parser": "1.4.3",
     "cors": "2.7.1",
     "errorhandler": "1.4.3",
-    "express-session": "1.14.0",
+    "express-session": "1.15.1",
     "loopback": "2.29.0",
     "loopback-boot": "2.21.0",
     "loopback-component-passport": "2.1.0",
