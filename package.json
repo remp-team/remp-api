@@ -20,7 +20,7 @@
   "dependencies": {
     "compression": "1.6.2",
     "cookie-parser": "1.4.3",
-    "cors": "2.7.1",
+    "cors": "2.8.3",
     "errorhandler": "1.4.3",
     "express-session": "1.14.0",
     "loopback": "2.29.0",
